@@ -93,7 +93,7 @@ Again, please refer to the release notes carefully before updating.
 
 [Operator v0.85.0](https://github.com/open-telemetry/opentelemetry-operator/releases/tag/v0.85.0)
 has been released. Enhancements include the addition of .NET Automatic
-Instrumentation support for Alpine-based images in the autoinstrumentation, and
+Instrumentation support for Alpine-based images in the auto-instrumentation, and
 Go auto-instrumentation support has been upgraded to v0.3.0-alpha. Furthermore,
 the Operator now allows for the collector CRD to specify a list of configmaps to
 mount, and introduces a new method of reconciliation to reduce complexity and

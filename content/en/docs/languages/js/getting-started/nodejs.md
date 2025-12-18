@@ -136,7 +136,7 @@ instrumented with OpenTelemetry.
 
 ### More Dependencies
 
-First, install the Node SDK and autoinstrumentations package.
+First, install the Node SDK and auto-instrumentations package.
 
 The Node SDK lets you initialize OpenTelemetry with several configuration
 defaults that are correct for the majority of use cases.
@@ -154,7 +154,7 @@ npm install @opentelemetry/sdk-node \
   @opentelemetry/sdk-trace-node
 ```
 
-To find all autoinstrumentation modules, you can look at the
+To find all auto-instrumentation modules, you can look at the
 [registry](/ecosystem/registry/?language=js&component=instrumentation).
 
 ### Setup

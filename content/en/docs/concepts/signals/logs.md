@@ -42,7 +42,7 @@ Collector as a general-purposes logging agent.
 ### OpenTelemetry logs for applications
 
 In applications, OpenTelemetry logs are created with any logging library or
-built-in logging capabilities. When you add autoinstrumentation or activate an
+built-in logging capabilities. When you add auto-instrumentation or activate an
 SDK, OpenTelemetry will automatically correlate your existing logs with any
 active trace and span, wrapping the log body with their IDs. In other words,
 OpenTelemetry automatically correlates your logs and traces.

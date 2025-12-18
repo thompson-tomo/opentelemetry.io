@@ -10,7 +10,8 @@ import:
   - '@cspell/dict-pt-br/cspell-ext.json'
   - '@cspell/dict-ro-ro/cspell-ext.json'
   - '@cspell/dict-uk-ua/cspell-ext.json'
-caseSensitive: true
+  - '@cspell/dict-people-names/cspell-ext.json'
+caseSensitive: false
 ignorePaths:
   - '*.svg'
   - content/{ja,zh}
@@ -27,10 +28,16 @@ patterns:
           [\s\S]*?         # content
           \1               # code-block end - cSpell:disable-next-line
       /igmx
+  - name: TabPane
+    pattern: |
+      /
+          {{\s*([<|%])\s*\/?\s*tabpane[^>]*[>|%]\s*}}
+      /igmx
 languageSettings:
   - languageId: markdown
     ignoreRegExpList:
       - CodeBlock
+      - TabPane
 dictionaryDefinitions:
   - name: en-words
     path: .cspell/en-words.txt
@@ -64,19 +71,20 @@ dictionaries:
   - uk-words
   # Programming languages and software terms
   - cpp
+  - django
   - dotnet
+  - erlang
   - golang
+  - java
+  - javascript
+  - markdown
   - node
+  - php
+  - python
+  - ruby
+  - rust
+  - typescript
   - softwareTerms
   # Other
   - companies
-words: # Valid words across all locales
-  - Docsy
-  - errorf
-  - Goldmark
-  - htmltest
-  - jsonify
-  - nvmrc
-  - opentelemetrybot
-  - warnf
-  - warnidf
+  - people-names

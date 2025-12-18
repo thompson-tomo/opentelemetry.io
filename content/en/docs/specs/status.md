@@ -37,7 +37,7 @@ Deprecated, Removed.
   support.
 - **Deprecated** components are stable but may eventually be removed.
 
-For complete definitions of lifecycles and long term support, see
+For complete definitions of lifecycle's and long term support, see
 [Versioning and stability](/docs/specs/otel/versioning-and-stability/).
 
 ## Current Status

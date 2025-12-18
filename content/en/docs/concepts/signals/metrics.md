@@ -92,7 +92,7 @@ OpenTelemetry project aims to provide default aggregations that are supported by
 visualizers and telemetry backends.
 
 Unlike [request tracing](../traces/), which is intended to capture request
-lifecycles and provide context to the individual pieces of a request, metrics
+lifecycle's and provide context to the individual pieces of a request, metrics
 are intended to provide statistical information in aggregate. Some examples of
 use cases for metrics include:
 
