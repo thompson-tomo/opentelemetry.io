@@ -4,7 +4,7 @@ UPDATE_YAML="yq eval -i"
 GIT=git
 GH=gh
 NPM=npm
-FILES="${FILES:-./data/registry/*.yml}"
+FILES="${FILES:-./data/registry/*-ruby-*.yml}"
 
 
 if [[ -n "$GITHUB_ACTIONS" ]]; then
@@ -73,6 +73,27 @@ for yaml_file in ${FILES}; do
         esac
     }
 
+    update_metadata() {
+        package_name=$1
+        registry=$2
+        yaml_file=$3
+
+        case $registry in
+            gems)
+                gem_json="$(curl -s "https://rubygems.org/api/v1/gems/${package_name}.json")"
+                ${UPDATE_YAML} ".urls.docs = \"$(jq -r '.documentation_uri' <<< "$gem_json")"\" $yaml_file
+                ${UPDATE_YAML} ".title = \"$(jq -r '.name' <<< "$gem_json")"\" $yaml_file
+                ${UPDATE_YAML} ".description = \"$(jq -r '.info' <<< "$gem_json")"\" $yaml_file
+                ${UPDATE_YAML} ".license = \"$(jq -r '.licenses | join(", ")' <<< "$gem_json")"\" $yaml_file
+                ${UPDATE_YAML} ".urls.repo = \"$(jq -r '.source_code_uri' <<< "$gem_json")"\" $yaml_file
+                ${UPDATE_YAML} ".urls.website = \"$(jq -r '.homepage_uri' <<< "$gem_json")"\" $yaml_file
+                ;;
+            *)
+                echo "Registry not supported for metadata update."
+                ;;
+        esac
+    }
+
     # Read package details
     name=$(yq eval '.package.name' "$yaml_file")
     registry=$(yq eval '.package.registry' "$yaml_file")
@@ -97,6 +118,7 @@ for yaml_file in ${FILES}; do
             body="${body}\n- ${row}"
         elif [ "$latest_version" != "$current_version" ]; then
             ${UPDATE_YAML} ".package.version = \"$latest_version\"" "$yaml_file"
+            update_metadata "$name" "$registry" "$yaml_file"
             row="($registry): Updated version from $current_version to $latest_version in $yaml_file"
             echo "${yaml_file} ${row}"
             body="${body}\n- ${row}"
