@@ -4,7 +4,7 @@ UPDATE_YAML="yq eval -i"
 GIT=git
 GH=gh
 NPM=npm
-FILES="${FILES:-./data/registry/*.yml}"
+FILES="${FILES:-./data/registry/*-ruby-*.yml}"
 
 
 if [[ -n "$GITHUB_ACTIONS" ]]; then
@@ -133,6 +133,7 @@ for yaml_file in ${FILES}; do
             echo "${yaml_file} ${row}"
             body="${body}\n- ${row}"
         else
+            update_metadata "$name" "$registry" "$yaml_file"
             echo "${yaml_file} ($registry): Version is already up to date."
         fi
     fi
